@@ -1,0 +1,452 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Great+Vibes&family=Satisfy&display=swap');
+
+.memories-page {
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fff0f6 0%, #ffe4f1 25%, #ffd4e8 50%, #ffc7e0 75%, #ffb8d8 100%);
+  background-attachment: fixed;
+  padding: 20px;
+  overflow-x: hidden;
+}
+
+/* Floating hearts background */
+.hearts-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.floating-heart-mem {
+  position: absolute;
+  bottom: -50px;
+  animation: floatUpMem linear forwards;
+  opacity: 0;
+  filter: drop-shadow(0 0 5px rgba(255, 105, 180, 0.5));
+}
+
+@keyframes floatUpMem {
+  0% {
+    bottom: -50px;
+    opacity: 0;
+    transform: translateX(0) rotate(0deg);
+  }
+  10% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(30px) rotate(180deg);
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    bottom: 110vh;
+    opacity: 0;
+    transform: translateX(-30px) rotate(360deg);
+  }
+}
+
+.memories-container {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header */
+.memories-header {
+  text-align: center;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  animation: fadeInDown 1s ease-out;
+}
+
+.heart-decoration {
+  font-size: clamp(2rem, 5vw, 3rem);
+  animation: heartBeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartBeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.15);
+  }
+}
+
+.memories-title {
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  color: #d41872;
+  margin: 0;
+  text-shadow: 2px 2px 8px rgba(212, 24, 114, 0.3);
+  animation: glow 3s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% {
+    text-shadow: 2px 2px 8px rgba(212, 24, 114, 0.3);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(212, 24, 114, 0.6), 0 0 30px rgba(255, 105, 180, 0.4);
+  }
+}
+
+.memories-subtitle {
+  text-align: center;
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  color: #c71585;
+  max-width: 800px;
+  margin: 0 auto 40px;
+  line-height: 1.8;
+  padding: 0 20px;
+  animation: fadeIn 1.5s ease-out 0.3s backwards;
+}
+
+/* Gallery */
+.memories-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-bottom: 60px;
+}
+
+.memory-card {
+  background: linear-gradient(135deg, #ffffff 0%, #fff5fa 100%);
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(212, 24, 114, 0.2);
+  transition: all 0.4s ease;
+  animation: fadeInUp 0.8s ease-out backwards;
+  position: relative;
+  overflow: visible;
+}
+
+.memory-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 50px rgba(212, 24, 114, 0.3);
+}
+
+.memory-card.highlight {
+  border: 3px solid #ff69b4;
+  background: linear-gradient(135deg, #fff5fa 0%, #ffe8f5 100%);
+}
+
+.memory-card.highlight::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: linear-gradient(45deg, #ff1493, #ff69b4, #ff1493, #ff69b4);
+  border-radius: 20px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  background-size: 300% 300%;
+  animation: gradientShift 3s ease infinite;
+}
+
+.memory-card.highlight:hover::before {
+  opacity: 1;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.memory-image-wrapper {
+  position: relative;
+  width: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+  aspect-ratio: 4/5;
+  margin-bottom: 15px;
+}
+
+.memory-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  display: block;
+}
+
+.memory-card:hover .memory-image {
+  transform: scale(1.1);
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255, 20, 147, 0.3), rgba(255, 105, 180, 0.3));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.memory-card:hover .image-overlay {
+  opacity: 1;
+}
+
+.overlay-heart {
+  font-size: 4rem;
+  animation: heartPulse 1s ease-in-out infinite;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
+}
+
+@keyframes heartPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+.memory-caption {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(1.9rem, 2vw, 1.3rem);
+  color: #8b0045;
+  line-height: 1.8;
+  text-align: center;
+  padding: 10px;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.memory-caption p {
+  margin: 0;
+  color: #8b0045;
+}
+
+.favorite-badge {
+  position: absolute;
+  top: -15px;
+  right: -10px;
+  background: linear-gradient(135deg, #ffd700, #ffed4e);
+  padding: 8px 20px;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(255, 215, 0, 0.5);
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.favorite-badge span {
+  font-family: 'Dancing Script', cursive;
+  font-weight: bold;
+  font-size: 1rem;
+  color: #d41872;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0) rotate(-5deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(5deg);
+  }
+}
+
+/* Bottom love note */
+.bottom-love-note {
+  background: linear-gradient(135deg, #fff5fa 0%, #ffe8f5 100%);
+  border: 3px solid #ff69b4;
+  border-radius: 25px;
+  padding: 40px;
+  margin: 60px auto;
+  max-width: 800px;
+  box-shadow: 0 15px 40px rgba(212, 24, 114, 0.3);
+  animation: fadeIn 1s ease-out 1s backwards;
+  position: relative;
+}
+
+.bottom-love-note::before,
+.bottom-love-note::after {
+  content: '💝';
+  position: absolute;
+  font-size: 2rem;
+  animation: spin 4s linear infinite;
+}
+
+.bottom-love-note::before {
+  top: -15px;
+  left: -15px;
+}
+
+.bottom-love-note::after {
+  bottom: -15px;
+  right: -15px;
+  animation-delay: 2s;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.note-divider {
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #ff69b4, transparent);
+  margin-bottom: 25px;
+}
+
+.note-text {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+  color: #8b0045;
+  line-height: 2;
+  text-align: center;
+  margin: 0 0 25px 0;
+  font-style: italic;
+}
+
+.note-signature {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  font-family: 'Great Vibes', cursive;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: #c71585;
+}
+
+.signature-heart {
+  animation: heartBeat 1.5s ease-in-out infinite;
+}
+
+.signature-text {
+  font-weight: bold;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .memories-page {
+    padding: 15px;
+  }
+
+  .memories-container {
+    padding: 10px;
+  }
+
+  .memories-header {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .memories-gallery {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .memory-card {
+    padding: 15px;
+  }
+
+  .bottom-love-note {
+    padding: 25px;
+    margin: 40px auto;
+  }
+
+  .favorite-badge {
+    top: -10px;
+    right: -5px;
+    padding: 6px 15px;
+  }
+
+  .favorite-badge span {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .memories-page {
+    padding: 10px;
+  }
+
+  .memories-gallery {
+    gap: 20px;
+  }
+
+  .memory-card {
+    padding: 12px;
+  }
+
+  .bottom-love-note {
+    padding: 20px;
+  }
+
+  .bottom-love-note::before,
+  .bottom-love-note::after {
+    font-size: 1.5rem;
+  }
+}

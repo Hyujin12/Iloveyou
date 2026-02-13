@@ -1,0 +1,589 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Pacifico&family=Quicksand:wght@400;600;700&display=swap');
+
+.notes-page {
+    position: relative;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #fff9e6 0%, #fffacd 25%, #fef9c3 50%, #fef7b0 75%, #fef5a0 100%);
+    background-attachment: fixed;
+    padding: 40px 20px;
+    overflow-x: hidden;
+}
+
+/* Floating sunflower petals background */
+.petals-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.floating-petal {
+    position: absolute;
+    bottom: -50px;
+    animation: floatUpPetals linear infinite;
+    opacity: 0;
+    filter: drop-shadow(0 0 3px rgba(255, 193, 7, 0.5));
+}
+
+@keyframes floatUpPetals {
+    0% {
+        bottom: -50px;
+        opacity: 0;
+        transform: translateX(0) rotate(0deg);
+    }
+    10% {
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 1;
+        transform: translateX(40px) rotate(180deg);
+    }
+    90% {
+        opacity: 0.6;
+    }
+    100% {
+        bottom: 110vh;
+        opacity: 0;
+        transform: translateX(-40px) rotate(360deg);
+    }
+}
+
+.notes-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header */
+.notes-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    animation: fadeInDown 1s ease-out;
+}
+
+.sunflower-deco {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+}
+
+.sunflower-deco.rotating {
+    animation: gentleRotate 8s ease-in-out infinite;
+}
+
+@keyframes gentleRotate {
+    0%, 100% {
+        transform: rotate(-10deg) scale(1);
+    }
+    50% {
+        transform: rotate(10deg) scale(1.1);
+    }
+}
+
+.notes-title {
+    font-family: 'Pacifico', cursive;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    color: #d97706;
+    margin: 0;
+    text-shadow: 2px 2px 8px rgba(217, 119, 6, 0.3);
+    animation: glowSunflower 3s ease-in-out infinite;
+}
+
+@keyframes glowSunflower {
+    0%, 100% {
+        text-shadow: 2px 2px 8px rgba(217, 119, 6, 0.3);
+    }
+    50% {
+        text-shadow: 0 0 20px rgba(234, 179, 8, 0.6), 0 0 30px rgba(252, 211, 77, 0.4);
+    }
+}
+
+.notes-subtitle {
+    text-align: center;
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    color: #92400e;
+    max-width: 700px;
+    margin: 0 auto 60px;
+    line-height: 1.8;
+    animation: fadeIn 1.5s ease-out 0.3s backwards;
+}
+
+/* Garden of Notes */
+.notes-garden {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 60px 40px;
+    padding: 40px 20px;
+    margin-bottom: 60px;
+}
+
+.sunflower-note {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: growFlower 0.8s ease-out backwards;
+}
+
+@keyframes growFlower {
+    0% {
+        opacity: 0;
+        transform: translateY(50px) scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Stem */
+.sunflower-stem {
+    position: relative;
+    width: 8px;
+    height: 120px;
+    margin-bottom: -10px;
+    z-index: 1;
+}
+
+.stem-line {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #65a30d 0%, #84cc16 100%);
+    border-radius: 4px;
+    box-shadow: inset -2px 0 4px rgba(0, 0, 0, 0.2);
+}
+
+.leaf {
+    position: absolute;
+    font-size: 1.5rem;
+    animation: leafSway 3s ease-in-out infinite;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.leaf-left {
+    left: -20px;
+    top: 30%;
+    transform: rotate(-30deg);
+}
+
+.leaf-right {
+    right: -20px;
+    top: 60%;
+    transform: rotate(30deg);
+    animation-delay: 0.5s;
+}
+
+@keyframes leafSway {
+    0%, 100% {
+        transform: translateX(0) rotate(-30deg);
+    }
+    50% {
+        transform: translateX(-5px) rotate(-35deg);
+    }
+}
+
+/* Sunflower Head */
+.sunflower-head {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    z-index: 2;
+}
+
+.sunflower-head:hover {
+    transform: scale(1.05) rotate(5deg);
+}
+
+.sunflower-note.bloomed .sunflower-head {
+    transform: scale(1.1);
+}
+
+/* Petals Ring */
+.petals-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%);
+}
+
+.petal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform-origin: center center;
+}
+
+.petal-shape {
+    width: 35px;
+    height: 60px;
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #fbbf24 100%);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    margin-left: -17.5px;
+    box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);
+    animation: petalGlow 3s ease-in-out infinite;
+}
+
+@keyframes petalGlow {
+    0%, 100% {
+        box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4);
+    }
+    50% {
+        box-shadow: 0 4px 15px rgba(245, 158, 11, 0.6);
+    }
+}
+
+.sunflower-note.bloomed .petal-shape {
+    animation: petalBloom 0.5s ease-out forwards;
+}
+
+@keyframes petalBloom {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+/* Sunflower Center */
+.sunflower-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle, #78350f 0%, #92400e 50%, #78350f 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(120, 53, 15, 0.5), inset 0 2px 4px rgba(255, 255, 255, 0.2);
+    z-index: 10;
+}
+
+.center-pattern {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3) 2px, transparent 2px),
+        radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.3) 2px, transparent 2px),
+        radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.3) 2px, transparent 2px),
+        radial-gradient(circle at 70% 70%, rgba(255, 255, 255, 0.3) 2px, transparent 2px),
+        radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.3) 2px, transparent 2px);
+    background-size: 20px 20px;
+    border-radius: 50%;
+    opacity: 0.6;
+}
+
+.note-number {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fef3c7;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+/* Note Title Badge */
+.note-title-badge {
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    padding: 8px 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+    white-space: nowrap;
+    z-index: 11;
+}
+
+.note-title-badge span {
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    color: #78350f;
+}
+
+/* Expandable Content */
+.note-content-wrapper {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-out, opacity 0.3s ease-out;
+    opacity: 0;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.sunflower-note.bloomed .note-content-wrapper {
+    max-height: 500px;
+    opacity: 1;
+}
+
+.note-content {
+    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+    border: 3px solid #fbbf24;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(217, 119, 6, 0.2);
+    animation: slideDown 0.5s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.content-border-top,
+.content-border-bottom {
+    text-align: center;
+    margin: 15px 0;
+}
+
+.border-sunflower {
+    font-size: 2rem;
+    filter: drop-shadow(0 2px 6px rgba(245, 158, 11, 0.3));
+    animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.content-box {
+    padding: 20px 10px;
+}
+
+.note-message {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(1.3rem, 2.5vw, 1.6rem);
+    color: #78350f;
+    line-height: 2;
+    text-align: center;
+    margin: 0;
+}
+
+.close-btn {
+    display: block;
+    margin: 20px auto 0;
+    padding: 12px 30px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #78350f;
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
+    transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(245, 158, 11, 0.6);
+}
+
+.close-btn:active {
+    transform: translateY(0);
+}
+
+/* Garden Footer */
+.garden-footer {
+    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+    border: 3px solid #fbbf24;
+    border-radius: 25px;
+    padding: 40px;
+    margin: 60px auto;
+    max-width: 800px;
+    box-shadow: 0 15px 40px rgba(217, 119, 6, 0.2);
+    animation: fadeIn 1s ease-out 1s backwards;
+    position: relative;
+}
+
+.footer-decoration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.footer-flower {
+    font-size: 2rem;
+    animation: gentleRotate 4s ease-in-out infinite;
+}
+
+.footer-flower:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.footer-flower:nth-child(4) {
+    animation-delay: 1s;
+}
+
+.footer-line {
+    flex: 1;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #fbbf24, transparent);
+}
+
+.footer-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+    color: #78350f;
+    line-height: 2;
+    text-align: center;
+    margin: 0 0 25px 0;
+}
+
+.footer-signature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    font-family: 'Dancing Script', cursive;
+    font-size: clamp(1.2rem, 2.5vw, 1.4rem);
+    color: #92400e;
+}
+
+.signature-name {
+    font-family: 'Pacifico', cursive;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: bold;
+    color: #d97706;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .notes-page {
+        padding: 30px 15px;
+    }
+
+    .notes-garden {
+        grid-template-columns: 1fr;
+        gap: 50px 30px;
+        padding: 30px 10px;
+    }
+
+    .sunflower-head {
+        width: 150px;
+        height: 150px;
+    }
+
+    .sunflower-center {
+        width: 70px;
+        height: 70px;
+    }
+
+    .note-number {
+        font-size: 1.8rem;
+    }
+
+    .petal-shape {
+        width: 30px;
+        height: 50px;
+        margin-left: -15px;
+    }
+
+    .sunflower-stem {
+        height: 100px;
+    }
+
+    .note-content {
+        padding: 25px 20px;
+    }
+
+    .garden-footer {
+        padding: 30px 20px;
+        margin: 40px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .notes-page {
+        padding: 20px 10px;
+    }
+
+    .notes-garden {
+        gap: 40px 20px;
+    }
+
+    .sunflower-head {
+        width: 130px;
+        height: 130px;
+    }
+
+    .sunflower-center {
+        width: 60px;
+        height: 60px;
+    }
+
+    .note-number {
+        font-size: 1.5rem;
+    }
+
+    .petal-shape {
+        width: 25px;
+        height: 45px;
+        margin-left: -12.5px;
+    }
+
+    .note-content {
+        padding: 20px 15px;
+    }
+
+    .garden-footer {
+        padding: 25px 15px;
+    }
+}

@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Giga:wght@100..900&display=swap');
+body{
+    
+    display: flex;
+    place-items: start;
+    min-width: 320px;
+    min-height: 100vh;
+    background-color: #ffffff;
+    font-family: 'Lexend Giga', sans-serif;
+}
+
+h1{
+    font-size: .5em;
+    line-height: 1.1;
+    color: #ffffff;
+    padding:10px;
+ 
+    
+}
+p{
+    color: #ffffff;
+    font-size: .3em;
+}
+.intro-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    height: 30vh;
+    width:425px;
+    max-width: 600px;
+    text-align:center;
+    background-image: url('../assets/images/couple.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+   
+}
+.btn{
+     display: flex;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #fff;
+    background-color: #925680;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+   justify-self: center;
+   border-radius: 20px;
+   
+
+}

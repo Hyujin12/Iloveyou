@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap');
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+body{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  background-color:#ffffff;
+  font-family: 'Dancing Script', cursive;
+}
+h1,.title{
+  color:#fd3578;
+  font-size:2rem;
+  text-align:center;
+  animation:fadeIn 2s ease-in-out;
+  padding-bottom: 40px;
+}
+.bio{
+  color: #44b617;
+}
+.hydro{
+  color: #1761b6;
+}
+.big{
+  color: #e70d44;
+}
+.form{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  background-color:#f0f0f0;
+  padding:60px;
+  border-radius:8px;
+  box-shadow:0 4px 8px rgba(0,0,0,0.1);
+}
+input{
+  padding:10px;
+  border:1px solid #ffffff;
+  border-radius:4px;
+  font-size:1rem;
+  background-color: #ffee00;
+  color:rgb(255, 0, 0);
+
+}
+button{
+  border-radius: 20px;
+  padding:10px;
+  margin-top:10px;
+  background-color: #e70d44;
+  color:#fff;
+}
+.Title{
+  color:#e70d44;
+  background-color: #44b617;
+}
